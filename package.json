@@ -1,7 +1,7 @@
 {
-  "name": "multi-city-weather-comparison",
+  "name": "weather-forecast-app",
   "version": "1.0.0",
-  "description": "A React application to compare weather in multiple cities.",
+  "description": "A React application to display a 5-day weather forecast.",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -13,35 +13,62 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-repo/multi-city-weather-comparison.git"
+    "url": "git+https://github.com/your-repo/weather-forecast-app.git"
   },
   "author": "Your Name",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/your-repo/multi-city-weather-comparison/issues"
+    "url": "https://github.com/your-repo/weather-forecast-app/issues"
   },
-  "homepage": "https://github.com/your-repo/multi-city-weather-comparison#readme",
+  "homepage": "https://github.com/your-repo/weather-forecast-app#readme",
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.6.3",
-    "@testing-library/react": "^16.3.0",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^29.5.14",
-    "@types/node": "^18.7.14",
-    "@types/react": "^18.0.14",
-    "@types/react-dom": "^18.0.5",
+    "@types/node": "^18.7.18",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
     "eslint": "^8.22.0",
     "eslint-plugin-react": "^7.30.1",
     "husky": "^8.0.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^30.0.0-beta.3",
-    "react-scripts": "5.0.1",
-    "ts-jest": "^29.0.1",
-    "typescript": "^4.8.2"
+    "prettier": "^2.7.1",
+    "ts-jest": "^29.0.3",
+    "typescript": "^4.8.4"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "winston": "^3.7.2"
+    "react-scripts": "5.0.1",
+    "typescript": "^4.8.4",
+    "winston": "^3.8.1"
+  },
+  "jest": {
+    "preset": "ts-jest",
+    "testEnvironment": "jsdom",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
