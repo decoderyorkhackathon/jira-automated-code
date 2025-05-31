@@ -1,0 +1,43 @@
+import React, { useState, useEffect } from 'react';
+
+// Importing weather icons
+import { WiDaySunny, WiNightClear, WiRain, WiSnow, WiCloudy } from 'react-icons/wi';
+
+const WeatherApp = () => {
+  const [weather, setWeather] = useState('sunny');
+
+  // Simulating dynamic weather change
+  useEffect(() => {
+    const weatherTypes = ['sunny', 'night', 'rainy', 'snowy', 'cloudy'];
+    const intervalId = setInterval(() => {
+      const randomWeather = weatherTypes[Math.floor(Math.random() * weatherTypes.length)];
+      setWeather(randomWeather);
+    }, 5000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // Mapping weather types to icons and backgrounds
+  const weatherConfig = {
+    sunny: { icon: <WiDaySunny />, bg: 'bg-yellow-300' },
+    night: { icon: <WiNightClear />, bg: 'bg-gray-800' },
+    rainy: { icon: <WiRain />, bg: 'bg-blue-400' },
+    snowy: { icon: <WiSnow />, bg: 'bg-white' },
+    cloudy: { icon: <WiCloudy />, bg: 'bg-gray-400' },
+  };
+
+  const { icon, bg } = weatherConfig[weather];
+
+  return (
+    <div className={`h-screen w-screen flex items-center justify-center transition-all duration-500 ${bg}`}>
+      <div className="text-6xl animate-bounce">
+        {icon}
+      </div>
+    </div>
+  );
+};
+
+export default WeatherApp;
+```
+
+Please note that this code is for a React component that simulates dynamic weather changes by changing the background color and displaying an animated icon that represents the current weather condition. The weather changes every 5 seconds. The Tailwind CSS classes are used for styling. The 'react-icons' library is used for the weather icons.

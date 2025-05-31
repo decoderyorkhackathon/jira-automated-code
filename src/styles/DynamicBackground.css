@@ -1,0 +1,62 @@
+import React, { useState, useEffect } from 'react';
+import { useSpring, animated } from 'react-spring';
+import { SunIcon, CloudIcon, RainIcon, SnowIcon } from '@heroicons/react/solid';
+
+const DynamicBackground = ({ weatherCondition }) => {
+  const [background, setBackground] = useState('bg-blue-500');
+  const [icon, setIcon] = useState(<SunIcon className="h-20 w-20 text-yellow-500 animate-pulse" />);
+
+  const props = useSpring({ opacity: 1, from: { opacity: 0 } });
+
+  useEffect(() => {
+    switch (weatherCondition) {
+      case 'Sunny':
+        setBackground('bg-yellow-300');
+        setIcon(<SunIcon className="h-20 w-20 text-yellow-500 animate-pulse" />);
+        break;
+      case 'Cloudy':
+        setBackground('bg-gray-400');
+        setIcon(<CloudIcon className="h-20 w-20 text-gray-500 animate-pulse" />);
+        break;
+      case 'Rainy':
+        setBackground('bg-blue-400');
+        setIcon(<RainIcon className="h-20 w-20 text-blue-500 animate-pulse" />);
+        break;
+      case 'Snowy':
+        setBackground('bg-white');
+        setIcon(<SnowIcon className="h-20 w-20 text-white animate-pulse" />);
+        break;
+      default:
+        setBackground('bg-blue-500');
+        setIcon(<SunIcon className="h-20 w-20 text-yellow-500 animate-pulse" />);
+    }
+  }, [weatherCondition]);
+
+  return (
+    <animated.div style={props} className={`h-screen w-screen ${background} flex items-center justify-center`}>
+      {icon}
+    </animated.div>
+  );
+};
+
+export default DynamicBackground;
+```
+
+Please note that you need to install `react-spring` and `@heroicons/react` packages to your project. You can install them by running the following commands:
+
+```bash
+npm install react-spring
+npm install @heroicons/react
+```
+
+Also, make sure to include the Tailwind CSS CDN link in your `index.html` file:
+
+```html
+<head>
+  ...
+  <link href="https://cdn.tailwindcss.com/2.2.19/tailwind.min.css" rel="stylesheet">
+  ...
+</head>
+```
+
+This component expects a `weatherCondition` prop which should be one of the following: 'Sunny', 'Cloudy', 'Rainy', 'Snowy'. Based on the `weatherCondition`, the background color and the icon of the page will change dynamically.

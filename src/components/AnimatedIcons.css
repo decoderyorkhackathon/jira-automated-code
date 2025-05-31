@@ -1,0 +1,39 @@
+import React from 'react';
+import { useSpring, animated } from 'react-spring';
+
+// Weather icons
+import { ReactComponent as SunnyIcon } from './icons/sunny.svg';
+import { ReactComponent as RainyIcon } from './icons/rainy.svg';
+import { ReactComponent as CloudyIcon } from './icons/cloudy.svg';
+
+const AnimatedIcons = ({ weatherCondition }) => {
+  // Define animation properties
+  const props = useSpring({ opacity: 1, from: { opacity: 0 } });
+
+  // Determine which icon to display based on the weather condition
+  const getWeatherIcon = () => {
+    switch (weatherCondition) {
+      case 'sunny':
+        return <SunnyIcon className="w-12 h-12 text-yellow-500" />;
+      case 'rainy':
+        return <RainyIcon className="w-12 h-12 text-blue-500" />;
+      case 'cloudy':
+        return <CloudyIcon className="w-12 h-12 text-gray-500" />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-400 to-purple-500">
+      <animated.div style={props} className="p-4 rounded-lg bg-white shadow-lg">
+        {getWeatherIcon()}
+      </animated.div>
+    </div>
+  );
+};
+
+export default AnimatedIcons;
+```
+
+Please note that this code assumes that you have SVG icons for sunny, rainy, and cloudy weather conditions in your project's `icons` directory. If you don't have these icons, you will need to replace the `ReactComponent as SunnyIcon`, `ReactComponent as RainyIcon`, and `ReactComponent as CloudyIcon` imports with the appropriate paths to your icons.

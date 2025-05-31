@@ -1,0 +1,35 @@
+Since the requirement is to use Tailwind CSS and not to create any CSS files, the file src/styles/AnimatedIcons.css is not needed. Instead, we will create a React component that uses Tailwind CSS classes for styling. Here is a basic example of how you might create a weather icon component with animations using Tailwind CSS.
+
+import React from 'react';
+
+// Importing weather icons
+import { WiDaySunny, WiRain, WiSnow } from 'react-icons/wi';
+
+const AnimatedIcons = ({ weatherCondition }) => {
+  // Determine which icon to display based on the weather condition
+  const getWeatherIcon = () => {
+    switch (weatherCondition) {
+      case 'Sunny':
+        return <WiDaySunny className="text-yellow-500 animate-pulse" />;
+      case 'Rainy':
+        return <WiRain className="text-blue-500 animate-bounce" />;
+      case 'Snowy':
+        return <WiSnow className="text-white animate-ping" />;
+      default:
+        return <WiDaySunny className="text-yellow-500 animate-pulse" />;
+    }
+  };
+
+  return (
+    <div className="flex justify-center items-center h-screen bg-gradient-to-r from-blue-400 to-purple-500">
+      {getWeatherIcon()}
+    </div>
+  );
+};
+
+export default AnimatedIcons;
+```
+
+In this code, we are using the react-icons library to display weather icons. The weather condition is passed as a prop to the AnimatedIcons component, and based on this condition, the appropriate icon is displayed. The icon is styled and animated using Tailwind CSS classes. The background of the page is also dynamically styled using Tailwind CSS to create a gradient effect.
+
+Please note that this is a basic example and does not include all possible weather conditions. You would need to add more cases to the switch statement to handle other conditions. Also, the animations and colors used here are just examples, you would need to adjust them to fit your specific design requirements.

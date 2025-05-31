@@ -1,0 +1,67 @@
+import React, { useState, useEffect } from 'react';
+import { ReactComponent as SunnyIcon } from './icons/sunny.svg';
+import { ReactComponent as RainyIcon } from './icons/rainy.svg';
+import { ReactComponent as CloudyIcon } from './icons/cloudy.svg';
+
+const WeatherVisualizer = () => {
+  const [weather, setWeather] = useState('sunny');
+
+  // Simulate dynamic weather changes
+  useEffect(() => {
+    const weatherChanges = ['sunny', 'rainy', 'cloudy'];
+    let i = 0;
+    const interval = setInterval(() => {
+      setWeather(weatherChanges[i]);
+      i = (i + 1) % weatherChanges.length;
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getBackgroundClass = () => {
+    switch (weather) {
+      case 'sunny':
+        return 'bg-yellow-300';
+      case 'rainy':
+        return 'bg-blue-300';
+      case 'cloudy':
+        return 'bg-gray-300';
+      default:
+        return 'bg-white';
+    }
+  };
+
+  const getWeatherIcon = () => {
+    switch (weather) {
+      case 'sunny':
+        return <SunnyIcon className="h-12 w-12 animate-bounce" />;
+      case 'rainy':
+        return <RainyIcon className="h-12 w-12 animate-pulse" />;
+      case 'cloudy':
+        return <CloudyIcon className="h-12 w-12 animate-pulse" />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className={`h-screen w-screen flex items-center justify-center ${getBackgroundClass()}`}>
+      {getWeatherIcon()}
+    </div>
+  );
+};
+
+export default WeatherVisualizer;
+```
+
+Please note that this code assumes that you have SVG icons named `sunny.svg`, `rainy.svg`, and `cloudy.svg` in the same directory as this file. If not, please replace the import paths with the correct paths to your SVG icons. 
+
+Also, make sure to include the Tailwind CSS CDN link in your `index.html` file as follows:
+
+```html
+<head>
+  <!-- ... -->
+  <link href="https://cdn.tailwindcss.com/2.2.19/tailwind.min.css" rel="stylesheet">
+</head>
+```
+
+This code creates a simple weather visualizer that changes the background color and displays an animated icon based on the current weather state. The weather state changes every 5 seconds to simulate dynamic weather changes.

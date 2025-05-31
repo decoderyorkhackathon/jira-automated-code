@@ -1,0 +1,52 @@
+import React, { useState, useEffect } from 'react';
+import { ReactComponent as SunnyIcon } from './icons/sunny.svg';
+import { ReactComponent as RainyIcon } from './icons/rainy.svg';
+import { ReactComponent as CloudyIcon } from './icons/cloudy.svg';
+
+const DynamicBackground = () => {
+  const [weather, setWeather] = useState('sunny');
+
+  // Simulate fetching weather data
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const weatherData = await new Promise((resolve) =>
+        setTimeout(() => resolve('rainy'), 2000)
+      );
+      setWeather(weatherData);
+    };
+
+    fetchWeather();
+  }, []);
+
+  const getWeatherIcon = () => {
+    switch (weather) {
+      case 'sunny':
+        return <SunnyIcon className="animate-spin h-12 w-12 text-yellow-500" />;
+      case 'rainy':
+        return <RainyIcon className="animate-pulse h-12 w-12 text-blue-500" />;
+      case 'cloudy':
+        return <CloudyIcon className="animate-bounce h-12 w-12 text-gray-500" />;
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div
+      className={`h-screen w-screen flex items-center justify-center transition-colors duration-500 ${
+        weather === 'sunny'
+          ? 'bg-yellow-300'
+          : weather === 'rainy'
+          ? 'bg-blue-300'
+          : 'bg-gray-300'
+      }`}
+    >
+      {getWeatherIcon()}
+    </div>
+  );
+};
+
+export default DynamicBackground;
+```
+
+Please note that this code assumes that you have SVG icons named `sunny.svg`, `rainy.svg`, and `cloudy.svg` in your `icons` directory. The weather state is simulated with a promise that resolves to 'rainy' after 2 seconds. You should replace this with your actual weather fetching logic. The background color and weather icon animation change based on the weather state.
