@@ -63,7 +63,6 @@
   
   - `DATABASE_URL`: Database connection string
 - `API_KEY`: External API key (if required)
-- `JWT_SECRET`: Secret for JWT token signing
 - `NODE_ENV`: Set to "production"
   
   ## Performance Optimization

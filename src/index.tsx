@@ -21,8 +21,8 @@ export const Index: React.FC<IndexProps> = ({ title = 'Index', className = '', o
     setError(null);
 
     try {
-      // Implementation for: Implement Multi-City Weather Comparison Table
-      // Develop a comparison table allowing users to view weather metrics for 3+ cities simultaneously using...
+      // Implementation for: Implement 5-Day Weather Forecast
+      // Develop a 5-day weather forecast component using OpenWeatherMap's forecast endpoint with temperature...
 
       // Simulate data loading
       await new Promise(resolve => setTimeout(resolve, 1000));
